@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from account.models import CustomUser
 from .serializers import JobAdvertSerializer
 from rest_framework.decorators import api_view
@@ -5,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from jobapp.models import JobAdvert
+from django.contrib import messages
+# from rest_framework.reverse import reverse
 
 
 User = get_user_model()
@@ -15,18 +18,34 @@ User = get_user_model()
 def jobadvert_create_view(request):
     if request.method == 'POST':
         current_user = request.user
+        try:
+            post_by = JobAdvert(owner=current_user)
+        except:
+            post_by = None
         
-        # request.user
-        # user = User.objects.get(user=request.user)
-        # post_by = JobAdvert(owner=current_user)
+        if post_by is not None:
+            serializer = JobAdvertSerializer(post_by, data=request.data)
+        else:
+            # messages.info(request, 'You need to be logged in to access this')
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-        request.data.owner = request.user
-        serializer = JobAdvertSerializer(data=request.data)
         if serializer.is_valid():
-            # data = {}
+            data = {}
             jobadvert = serializer.save()
-            # data['Title'] = 'Job Advert HHas '
-            # data['Title'] = jobadvert.title
-            return Response(data=serializer.data)
-        print(serializer.data)
+            data['Success'] = 'Job advert has been created'
+            data['Title'] = jobadvert.title
+            data['Posted By'] = jobadvert.owner.username
+            messages.success(request, 'Job advert has been created')
+            return Response(data=data)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+@api_view(['POST'])
+def jobapplication_create_view(request):
+    if request.method == 'POST':
+        current_user = request.user
+
+

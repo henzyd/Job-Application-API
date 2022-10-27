@@ -154,7 +154,9 @@ DJOSER = {
     'ACTIVATION_URL': '/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SEND_CONFIRMATION_EMAIL' : True,
-    'SERIALIZERS': {},
+    'SERIALIZERS': {
+        'user_create': 'account.api.serializers.UserRegistrationSerializer',
+    },
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -166,4 +168,4 @@ EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True 
 
 
-# DEFAULT_FROM_EMAIL = f'Uche from {SITE_NAME} <noreply@{DOMAIN}>'
+DEFAULT_FROM_EMAIL = f'Uche from {SITE_NAME} <noreply@{DOMAIN}>'
