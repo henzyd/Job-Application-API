@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import JobAdvertForm
 from django.contrib import messages
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -14,3 +15,6 @@ def drop_down_view(request):
     else:
         form = JobAdvertForm()
     return render(request, 'index.html', {'form': form})
+
+def text(request):
+    return JsonResponse({'hi': 'uche'})
