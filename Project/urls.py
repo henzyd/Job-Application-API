@@ -43,5 +43,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('test/', views.drop_down_view, name="test"),
     path('api/', include('jobapp.api.urls')),
+    path('api/', include('jobapp.urls')),
     # path('test2/' )
 ]
