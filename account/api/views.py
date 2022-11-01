@@ -26,6 +26,7 @@ def user_registration(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+## FIXME
 @api_view(['POST'])
 def user_login(request):
     if request.method == 'POST':

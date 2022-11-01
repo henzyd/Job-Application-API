@@ -10,7 +10,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     password_2 = serializers.CharField(max_length=128)
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password_2']
+        fields = ['username', 'email', 'password', 'password_2']
 
     def save(self):
         user = User(
@@ -30,3 +30,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=700)
+    password = serializers.CharField(max_length=700)
+    

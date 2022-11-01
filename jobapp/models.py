@@ -17,7 +17,6 @@ EXPERIENCE_LEVEL = (
     ('SENIOR', 'Senior'),
 )
 class JobAdvert(models.Model): 
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=False)
     title = models.CharField(max_length=150, blank=False)
     company_name = models.CharField(max_length=150, blank=False)
     employment_type = models.CharField(choices=EMOPLOYMENT_TYPE, max_length=30, blank=True)
@@ -48,7 +47,7 @@ YEARS_OF_EXPERIENCE = (
     ('5_', '7 and above'),
 )
 class JobApplication(models.Model):
-    applicants = models.ForeignKey(JobAdvert, on_delete=models.CASCADE, blank=False)
+    applicants = models.ForeignKey(JobAdvert, related_name='applicants', on_delete=models.CASCADE, blank=False)
     first_name = models.CharField(max_length=150, blank=False)
     last_name = models.CharField(max_length=150, blank=False)
     email_address = models.EmailField(blank=False)

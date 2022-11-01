@@ -4,7 +4,7 @@ from .models import JobAdvert, JobApplication
 # Register your models here.
 
 class JobAdvertDisplay(admin.ModelAdmin):
-    list_display = ['title', 'company_name', 'employment_type', 'owner']
+    list_display = ['title', 'company_name', 'employment_type']
 
 admin.site.register(JobAdvert, JobAdvertDisplay)
 
