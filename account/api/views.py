@@ -27,20 +27,20 @@ def user_registration(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-## FIXME
-@api_view(['POST'])
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['paswword']
-        user = authenticate(username, password)
+# ## FIXME
+# @api_view(['POST'])
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['paswword']
+#         user = authenticate(username, password)
         
-        if user is None:
-            messages.error(request, 'Invalid input nitgtg')
-            return redirect('login')
-        # else:
-        #     messages(request, 'innmo')
-        #     return redirect('home')
+#         if user is None:
+#             messages.error(request, 'Invalid input nitgtg')
+#             return redirect('login')
+#         # else:
+#         #     messages(request, 'innmo')
+#         #     return redirect('home')
 
 
 @api_view(['POST'])
