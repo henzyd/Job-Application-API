@@ -12,5 +12,4 @@ class UserAdminDisplay(admin.ModelAdmin):
 admin.site.register(User, UserAdminDisplay)
 
 
-admin.site.register(models.UserProfile)
 
